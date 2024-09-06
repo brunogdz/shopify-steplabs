@@ -1,0 +1,378 @@
+{% schema %}
+  {
+    "name": "FAQ name",
+    "settings": [
+      {
+      "type": "text",
+      "id": "faq_title",
+      "label":  "Title",
+       "default": "FAQs",
+    },
+      {
+      "type": "text",
+      "id": "faq_subtitle",
+      "label":  "SubTitle",
+       "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+    },
+      {
+      "type": "text",
+      "id": "faq__button_title",
+      "label":  "Button Title",
+       "default": "Contact",
+    },
+      {
+      "type": "color",
+      "id": "faq_component_background",
+      "label":  "Background",
+       "default": "#fff",
+    },
+      {
+      "type": "select",
+        "label": "Position color",
+      "id": "faq_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "left",
+    },
+      {
+      "type": "color",
+      "id": "faq_title_color",
+      "label":  "Title Color",
+       "default": "#000",
+    },
+      {
+      "type": "color",
+      "id": "faq_subtitle_color",
+      "label":  "Title Color",
+       "default": "#000",
+    },
+      {
+      "type": "color",
+      "id": "faq_button_color",
+      "label":  "Button Color",
+       "default": "#fff",
+    },
+      {
+      "type": "color",
+      "id": "faq_button_background_color",
+      "label":  "Button Background Color",
+       "default": "#000",
+    },
+      {
+      "type": "color",
+      "id": "faq_item_background_color",
+      "label":  "Item Background Color",
+       "default": "#5D3BE4",
+    },
+      {
+      "type": "color",
+      "id": "faq_item_color",
+      "label":  "Item Text Color",
+       "default": "#fff",
+    },
+      
+
+    ],
+    "blocks": [
+      {
+      "type": "text",
+      "name": "Item",
+      "settings": [
+         {
+          "type": "text",
+          "id": "faq_item_title",
+          "label":  "Item Title",
+           "default": "Question1 text goes here"
+        },
+          {
+          "type": "text",
+          "id": "faq_item_answer",
+          "label":  "Answer",
+           "default": "Answer text goes here",
+        },
+      ],
+      }
+    ],
+    "presets": [
+      {
+        "name":"FAQ",
+        "category": "custom",
+      }
+    ]
+  }
+{% endschema %}
+
+<div class="container {% if section.settings.faq_position == "left"%}left{% else %}right{% endif %}" style="background-color: {{ section.settings.faq_component_background }}">
+    <div class="content">
+      <div class="faq-title" style="color:{{ section.settings.faq_title_color }}">{{ section.settings.faq_title }}</div>
+      <div class="faq-subtitle" style="color:{{ section.settings.faq_subtitle_color }}">{{ section.settings.faq_subtitle }}</div>
+      <button class="faq-button" style="color:{{ section.settings.faq_button_color }}; background-color:{{ section.settings.faq_button_background_color }}">{{ section.settings.faq__button_title }}</button>
+    </div>
+
+    <div class="faq-items">
+      {% for block in section.blocks %}
+        <div class="faq-item" >
+          <div class="faq-item-question" style="background-color: {{ section.settings.faq_item_background_color }}; color: {{ section.settings.faq_item_color }}" onClick='toggleElement(this)'>
+            {{ block.settings.faq_item_title }}
+              <span class="svg-selector">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="plus-icon">
+                  <path d="M19.3336 9.66703V10.3336C19.3336 10.7018 19.0352 11.0003 18.667 11.0003H11.0003V18.667C11.0003 19.0351 10.7018 19.3336 10.3336 19.3336H9.66702C9.29882 19.3336 9.00032 19.0351 9.00032 18.667V11.0003H1.33366C0.965473 11.0003 0.666992 10.7018 0.666992 10.3336V9.66703C0.666992 9.29883 0.965473 9.00033 1.33366 9.00033H9.00032V1.33365C9.00032 0.965463 9.29882 0.666992 9.66702 0.666992H10.3336C10.7018 0.666992 11.0003 0.965463 11.0003 1.33365V9.00033H18.667C19.0352 9.00033 19.3336 9.29883 19.3336 9.66703Z" fill="white"/>
+                  </svg>
+                  
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve" class="minus-icon">
+
+                  <defs>
+                  </defs>
+                  <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                    <path d="M 86.5 48.5 h -83 C 1.567 48.5 0 46.933 0 45 s 1.567 -3.5 3.5 -3.5 h 83 c 1.933 0 3.5 1.567 3.5 3.5 S 88.433 48.5 86.5 48.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(29,29,27); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    <path d="M 86.5 48.5 h -83 C 1.567 48.5 0 46.933 0 45 s 1.567 -3.5 3.5 -3.5 h 83 c 1.933 0 3.5 1.567 3.5 3.5 S 88.433 48.5 86.5 48.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(29,29,27); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  </g>
+                  </svg>
+              </span>
+            </div>
+          <div class="faq-item-answer" style="background-color:{{ section.settings.faq_item_background_color }}; color: {{ section.settings.faq_item_color }}">{{ block.settings.faq_item_answer }}</div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+{% style %}
+  @media screen and (min-width: 750px) {
+    .container {
+      width: 100%;
+      max-width: 1440px;
+      padding: 112px 64px;
+      gap: 80px;
+      display: flex;
+    }
+
+    .container.left{
+      flex-direction: row;
+    }
+
+    .container.right {
+      flex-direction: row-reverse;
+    }
+
+    .content {
+      max-width: 500px;
+      height: 136px;
+      gap: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-title {
+      font-family: Roboto, sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 57.6px;
+      text-align: left;
+
+
+    }
+
+    .faq-subtitle {
+      font-family: Roboto, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 27px;
+      text-align: left;
+    }
+
+    .faq-button {
+      width: 104px;
+      height: 48px;
+      padding: 12px 24px;
+      gap: 8px;
+      border-radius: 8px;
+    } 
+
+    .minus-icon {
+      max-width: 32px;
+      display: none;
+    }
+
+    .faq-item-answer {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 20px 24px;
+      height: 72px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      margin-top: -24px;
+      border-left: 1px solid #fff;  
+      border-right: 1px solid #fff; 
+    }
+
+    .faq-items {
+      max-width: 732px;
+      gap: 16px;
+      opacity: 0px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border: 1px solid #fff;
+      border-radius: 8px;
+    }
+
+    .svg-selector {
+      max-width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-item-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 20px 24px;
+      height: 72px;
+      border-radius: 8px;
+      border: 1px solid #fff;
+    }
+
+  }
+  @media screen and (max-width: 750px) {
+    .minus-icon {
+      max-width: 32px;
+      display: none;
+    }
+
+    .faq-item-question {
+      display: none;
+    }
+
+    .faq-title {
+      font-family: Roboto, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 57.6px;
+      text-align: left;
+
+    }
+
+    .faq-subtitle {
+      font-family: Roboto, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 27px;
+      text-align: left;
+    }
+
+    .faq-button {
+      width: 104px;
+      height: 48px;
+      padding: 12px 24px;
+      gap: 8px;
+      border-radius: 8px;
+    } 
+
+    .container {
+      width: 100%;
+      padding: 64px 20px;
+      gap: 48px;
+      display: flex;
+    }
+
+    .container.left{
+      flex-direction: column;
+    }
+
+    .container.right {
+      flex-direction: column-reverse;
+    }
+
+    .content {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+      align-items: flex-start;      
+    }
+
+    .minus-icon {
+      max-width: 32px;
+      display: none;
+    }
+    .faq-item-answer {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 20px 24px;
+      height: 64px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      margin-top: -24px;
+      border-left: 1px solid #fff;  
+      border-right: 1px solid #fff;  
+    }
+
+    .faq-items {
+      max-width: 732px;
+      gap: 16px;
+      opacity: 0px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border: 1px solid #fff;
+      border-radius: 8px;
+    }
+
+    .svg-selector {
+      max-width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-item-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 16px 20px;
+      height: 64px;
+      border-radius: 8px;
+      border: 1px solid #fff;
+    }
+
+  }
+{% endstyle %}
+
+<script>
+  function toggleElement(element){
+    const answer = element.nextElementSibling
+    const plus = element.querySelector('.plus-icon')
+    const minus = element.querySelector('.minus-icon')
+
+   if(answer.style.display == 'none') {
+      plus.style.display = 'none'
+      minus.style.display = 'block'
+      answer.style.display = 'flex'
+    } else {
+      plus.style.display = 'flex'
+      minus.style.display = 'none'
+      answer.style.display = 'none'
+    }
+  }
+</script>
+
